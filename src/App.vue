@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <div id="nav">
-            <router-link to="/">Home</router-link>|
+            <router-link to="/">Home</router-link>
             <router-link to="/login">Login</router-link>
             <router-link to="/register">Register</router-link>
             <router-link to="/account" v-if="this.$store.getters.getToken">Account</router-link>
@@ -26,10 +26,15 @@
     a {
         font-weight: bold;
         color: #2c3e50;
+        margin-right: 1rem;
 
         &.router-link-exact-active {
             color: #42b983;
         }
     }
+}
+
+.container {
+    padding: 0 1rem;
 }
 </style>

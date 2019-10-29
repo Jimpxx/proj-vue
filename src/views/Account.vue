@@ -17,6 +17,7 @@ export default {
         return {
             username: this.$store.getters.getLoggedInUser.name,
             money: this.$store.getters.getLoggedInUser.money,
+            token: this.$store.getters.getToken,
             insertedMoney: 0
         };
     },
@@ -26,10 +27,18 @@ export default {
             console.log("Making deposit..");
             e.preventDefault();
             axios
-                .post("http://localhost:3333/user/deposit", {
-                    email: this.$store.getters.getLoggedInUser.email,
-                    amount: this.insertedMoney
-                })
+                .post(
+                    "http://localhost:3333/user/deposit",
+                    {
+                        email: this.$store.getters.getLoggedInUser.email,
+                        amount: this.insertedMoney
+                    },
+                    {
+                        headers: {
+                            "x-access-token": this.token
+                        }
+                    }
+                )
                 .then(user => {
                     this.$store.dispatch("changeUser", user.data);
                     this.insertedMoney = 0;

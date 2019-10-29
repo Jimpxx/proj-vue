@@ -98,7 +98,7 @@ form h1 {
 }
 
 .input-field {
-    width: 100%;
+    width: 90%;
     padding: 0.5rem 0.75rem;
     font-size: 1.25rem;
 }
