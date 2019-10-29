@@ -6,6 +6,7 @@
             <input type="number" name="money" id="money" v-model="insertedMoney" />
             <button type="submit">Insert money</button>
         </form>
+        <p>{{errorMsg}}</p>
     </div>
 </template>
 
@@ -18,13 +19,14 @@ export default {
             username: this.$store.getters.getLoggedInUser.name,
             money: this.$store.getters.getLoggedInUser.money,
             token: this.$store.getters.getToken,
+            errorMsg: "",
             insertedMoney: 0
         };
     },
 
     methods: {
         makeDeposit: function(e) {
-            console.log("Making deposit..");
+            // console.log("Making deposit..");
             e.preventDefault();
             axios
                 .post(
@@ -46,7 +48,8 @@ export default {
                     this.money = this.$store.getters.getLoggedInUser.money;
                 })
                 .catch(err => {
-                    console.log(err);
+                    // console.log(err);
+                    this.errorMsg = err.message;
                 });
         }
     }
