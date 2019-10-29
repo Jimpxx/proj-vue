@@ -44,6 +44,7 @@
                 </table>
             </div>
             <h2>Current balance in my account: {{ money }}</h2>
+            <p>{{errorMsg}}</p>
         </div>
     </div>
 </template>
@@ -64,8 +65,9 @@ export default {
             allCompanies: [],
             myHoldings: this.$store.getters.getLoggedInUser.holdings,
             token: this.$store.getters.getToken,
-            // socket: io("https://proj-api.jimmyandersson.me")
-            socket: io("http://localhost:3333")
+            errorMsg: "",
+            socket: io("https://project-api.jimmyandersson.me")
+            // socket: io("http://localhost:3333")
         };
     },
 
@@ -74,7 +76,7 @@ export default {
             let stock = this.allCompanies.filter(stock => {
                 return stock.label == company;
             });
-            console.log(stock[0]);
+            // console.log(stock[0]);
             return (
                 Math.round(
                     amount * stock[0].data[stock[0].data.length - 1] * 100
@@ -90,11 +92,12 @@ export default {
         },
 
         buyStock(company) {
-            console.log(`Buying stock: ${company.label}`);
-            console.log(this.$store.getters.getLoggedInUser.email);
+            // console.log(`Buying stock: ${company.label}`);
+            // console.log(this.$store.getters.getLoggedInUser.email);
             axios
                 .post(
-                    "http://localhost:3333/user/order",
+                    "https://project-api.jimmyandersson.me/user/order",
+                    // "http://localhost:3333/user/order",
                     {
                         email: this.$store.getters.getLoggedInUser.email,
                         type: "buy",
@@ -114,16 +117,18 @@ export default {
                     this.money = this.$store.getters.getLoggedInUser.money;
                 })
                 .catch(err => {
-                    console.log(err);
+                    // console.error(err);
+                    this.errorMsg = err.message;
                 });
         },
 
         sellStock(company) {
-            console.log(`Selling stock: ${company.label}`);
-            console.log(this.$store.getters.getLoggedInUser.email);
+            // console.log(`Selling stock: ${company.label}`);
+            // console.log(this.$store.getters.getLoggedInUser.email);
             axios
                 .post(
-                    "http://localhost:3333/user/order",
+                    "https://project-api.jimmyandersson.me/user/order",
+                    // "http://localhost:3333/user/order",
                     {
                         email: this.$store.getters.getLoggedInUser.email,
                         type: "sell",
@@ -143,7 +148,8 @@ export default {
                     this.money = this.$store.getters.getLoggedInUser.money;
                 })
                 .catch(err => {
-                    console.log(err);
+                    // console.error(err);
+                    this.errorMsg = err.message;
                 });
         }
     },

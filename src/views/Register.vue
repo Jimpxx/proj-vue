@@ -69,12 +69,15 @@ export default {
                 birthday: this.birthday
             };
 
-            return fetch("http://localhost:3333/user/register", {
-                // return fetch("https://me-api.jimmyandersson.me/register", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(dataObject)
-            })
+            return fetch(
+                "https://project-api.jimmyandersson.me/user/register",
+                {
+                    // return fetch("http://localhost:3333/user/register", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(dataObject)
+                }
+            )
                 .then(res => {
                     this.$router.push("/login");
                     return res;

@@ -28,7 +28,8 @@ export default {
             e.preventDefault();
             axios
                 .post(
-                    "http://localhost:3333/user/deposit",
+                    "https://project-api.jimmyandersson.me/user/deposit",
+                    // "http://localhost:3333/user/deposit",
                     {
                         email: this.$store.getters.getLoggedInUser.email,
                         amount: this.insertedMoney
