@@ -1,15 +1,6 @@
 <template>
     <div class="container">
-        <!-- <pre>
-            {{chartData}}
-        </pre>-->
-        <!-- <div class="chart-window"> -->
-        <!-- <line-chart v-if="loaded" :height="400" :chartData="chartData" /> -->
-        <!-- <line-chart v-if="loaded" :chartData="chartData" /> -->
-        <!-- <line-chart v-if="loaded" :width="300" :height="300" :chartData="chartData" /> -->
         <line-chart v-if="loaded" :width="null" :height="null" :chartData="chartData" />
-        <!-- <line-chart v-if="loaded" :styles="myStyles" :chartData="chartData" /> -->
-        <!-- </div> -->
         <div class="all-companies">
             <h2>Available stocks</h2>
             <div class="stocks">
